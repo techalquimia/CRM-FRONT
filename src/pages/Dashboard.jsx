@@ -1,20 +1,8 @@
 import DashboardLayout from "../components/layout/DashboardLayout.jsx";
 import StatCard from "../components/ui/StatCard.jsx";
 import ActivityItem from "../components/ui/ActivityItem.jsx";
-
-const stats = [
-  { label: "Leads nuevos", value: "128", trend: "+12%" },
-  { label: "Oportunidades", value: "34", trend: "+4%" },
-  { label: "Tasa de cierre", value: "21%", trend: "-2%" },
-  { label: "Ingreso mensual", value: "$48,300", trend: "+8%" },
-];
-
-const activity = [
-  { title: "María López", detail: "Solicitó demo", time: "Hace 6 min" },
-  { title: "TechNova", detail: "Cotización enviada", time: "Hace 18 min" },
-  { title: "Carlos Ruiz", detail: "Reunión agendada", time: "Hace 1 h" },
-  { title: "Norte Retail", detail: "Negociación abierta", time: "Hace 3 h" },
-];
+import GoogleMapView from "../components/maps/GoogleMapView.jsx";
+import { MOCK_STATS, MOCK_ACTIVITY } from "../data/mockUnits.js";
 
 const Dashboard = () => {
   return (
@@ -23,7 +11,7 @@ const Dashboard = () => {
       subtitle="Resumen de actividad y métricas clave"
     >
       <section className="grid stats-grid">
-        {stats.map((item) => (
+        {MOCK_STATS.map((item) => (
           <StatCard
             key={item.label}
             label={item.label}
@@ -43,7 +31,9 @@ const Dashboard = () => {
               Ver detalles
             </button>
           </header>
-          <div className="chart-placeholder" aria-hidden="true" />
+          <div className="map-container">
+            <GoogleMapView />
+          </div>
         </article>
         <article className="card">
           <header className="card-header">
@@ -56,7 +46,7 @@ const Dashboard = () => {
             </button>
           </header>
           <div className="activity-list">
-            {activity.map((item) => (
+            {MOCK_ACTIVITY.map((item) => (
               <ActivityItem
                 key={item.title}
                 title={item.title}
