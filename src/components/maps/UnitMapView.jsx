@@ -5,6 +5,7 @@ import { CONFIG } from "../../constants/config.js";
 import { useGoogleMaps } from "../../hooks/useGoogleMaps.js";
 import MapErrorMessage from "./MapErrorMessage.jsx";
 import LoadingOverlay from "../ui/LoadingOverlay.jsx";
+import styles from "./UnitMapView.module.css";
 
 const UnitMapView = ({ unit }) => {
   const {
@@ -44,7 +45,7 @@ const UnitMapView = ({ unit }) => {
   }
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+    <div className={styles.mapContainer}>
       {isMapLoading && (
         <LoadingOverlay message="Cargando mapa..." fullScreen={false} />
       )}

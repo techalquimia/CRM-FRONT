@@ -8,6 +8,7 @@ import { calculateMapCenter } from "../../utils/mapUtils.js";
 import { useGoogleMaps } from "../../hooks/useGoogleMaps.js";
 import MapErrorMessage from "./MapErrorMessage.jsx";
 import LoadingOverlay from "../ui/LoadingOverlay.jsx";
+import styles from "./GoogleMapView.module.css";
 
 const GoogleMapView = () => {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const GoogleMapView = () => {
   }
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "400px" }}>
+    <div className={styles.mapContainer}>
       {isMapLoading && (
         <LoadingOverlay message="Cargando mapa..." fullScreen={false} />
       )}

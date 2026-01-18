@@ -134,7 +134,7 @@ const ImageViewer = ({ images, currentIndex, onClose, onNavigate }) => {
               {currentImage.description && (
                 <div className={styles.metadataItem}>
                   <p className={styles.metadataLabel}>Descripción</p>
-                  <p className={styles.metadataValue} style={{ fontSize: "0.9rem" }}>
+                  <p className={`${styles.metadataValue} ${styles.metadataValueSmall}`}>
                     {currentImage.description}
                   </p>
                 </div>
