@@ -1,5 +1,6 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
+import styles from "./ErrorBoundary.module.css";
 
 /**
  * Error Boundary component to catch React errors
@@ -27,42 +28,24 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div
-          style={{
-            minHeight: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "var(--bg)",
-            padding: "20px",
-          }}
-        >
-          <div
-            style={{
-              maxWidth: "500px",
-              background: "var(--surface)",
-              borderRadius: "var(--radius)",
-              padding: "40px",
-              boxShadow: "var(--shadow)",
-              textAlign: "center",
-            }}
-          >
-            <h1 style={{ margin: "0 0 16px 0", color: "var(--danger)" }}>
+        <div className={styles.container}>
+          <div className={styles.errorCard}>
+            <h1 className={styles.title}>
               Algo salió mal
             </h1>
-            <p style={{ margin: "0 0 24px 0", color: "var(--muted)" }}>
+            <p className={styles.message}>
               Ha ocurrido un error inesperado. Por favor, intenta recargar la página.
             </p>
-            <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
+            <div className={styles.actions}>
               <button
-                className="primary-button"
+                className={styles.primaryButton}
                 onClick={this.handleReset}
                 type="button"
               >
                 Volver al inicio
               </button>
               <button
-                className="ghost-button"
+                className={styles.ghostButton}
                 onClick={() => window.location.reload()}
                 type="button"
               >
@@ -70,26 +53,11 @@ class ErrorBoundary extends Component {
               </button>
             </div>
             {this.props.showDetails && this.state.error && (
-              <details
-                style={{
-                  marginTop: "24px",
-                  padding: "16px",
-                  background: "#f5f5f5",
-                  borderRadius: "8px",
-                  textAlign: "left",
-                  fontSize: "0.85rem",
-                }}
-              >
-                <summary style={{ cursor: "pointer", fontWeight: 600 }}>
+              <details className={styles.details}>
+                <summary className={styles.summary}>
                   Detalles del error
                 </summary>
-                <pre
-                  style={{
-                    marginTop: "12px",
-                    overflow: "auto",
-                    fontSize: "0.75rem",
-                  }}
-                >
+                <pre className={styles.pre}>
                   {this.state.error.toString()}
                   {this.state.error.stack}
                 </pre>

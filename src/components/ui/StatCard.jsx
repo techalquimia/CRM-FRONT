@@ -1,13 +1,15 @@
+import styles from "./StatCard.module.css";
+
 const StatCard = ({ label, value, trend }) => {
   const isPositive = trend.startsWith("+");
 
   return (
-    <article className="card stat-card">
+    <article className={`${styles.card} ${styles.statCard}`}>
       <div>
-        <p className="stat-label">{label}</p>
-        <p className="stat-value">{value}</p>
+        <p className={styles.statLabel}>{label}</p>
+        <p className={styles.statValue}>{value}</p>
       </div>
-      <span className={`stat-trend ${isPositive ? "up" : "down"}`}>
+      <span className={`${styles.statTrend} ${!isPositive ? styles.down : ""}`}>
         {trend}
       </span>
     </article>

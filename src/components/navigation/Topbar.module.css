@@ -1,0 +1,28 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pageTitle {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.pageSubtitle {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.topbarActions {
+  display: flex;
+  gap: 12px;
+}
+
+@media (max-width: 960px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}

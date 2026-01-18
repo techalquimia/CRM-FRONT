@@ -1,0 +1,100 @@
+.sidebar {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+}
+
+.sidebarBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.brandDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navItem {
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-align: left;
+  color: var(--muted);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navItem.active,
+.navItem:not(:disabled):hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.active {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.navItem:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.sidebarFooter {
+  margin-top: auto;
+}
+
+.userPill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--bg);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #cbd9ff, #f1f5ff);
+}
+
+.userName {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.userRole {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+@media (max-width: 960px) {
+  .sidebar {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .sidebarNav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebarFooter {
+    width: 100%;
+  }
+}

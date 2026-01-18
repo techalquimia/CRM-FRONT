@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { ROUTES, ROUTE_NAMES } from "../../constants/routes.js";
+import styles from "./Sidebar.module.css";
 
 const items = [
   { name: ROUTE_NAMES.HOME, path: ROUTES.DASHBOARD },
@@ -18,36 +19,32 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="sidebar">
-      <div className="sidebar-brand">
-        <span className="brand-dot" aria-hidden="true" />
+    <aside className={styles.sidebar}>
+      <div className={styles.sidebarBrand}>
+        <span className={styles.brandDot} aria-hidden="true" />
         <span>CRM</span>
       </div>
-      <nav className="sidebar-nav">
+      <nav className={styles.sidebarNav}>
         {items.map((item, index) => (
           <button
             key={item.name}
-            className={`nav-item ${
-              location.pathname === item.path ? "active" : ""
+            className={`${styles.navItem} ${
+              location.pathname === item.path ? styles.active : ""
             }`}
             type="button"
             onClick={() => handleItemClick(item)}
             disabled={!item.path}
-            style={{
-              cursor: item.path ? "pointer" : "not-allowed",
-              opacity: item.path ? 1 : 0.6,
-            }}
           >
             {item.name}
           </button>
         ))}
       </nav>
-      <div className="sidebar-footer">
-        <div className="user-pill">
-          <span className="avatar" aria-hidden="true" />
+      <div className={styles.sidebarFooter}>
+        <div className={styles.userPill}>
+          <span className={styles.avatar} aria-hidden="true" />
           <div>
-            <p className="user-name">Camila Vega</p>
-            <p className="user-role">Gerente comercial</p>
+            <p className={styles.userName}>Camila Vega</p>
+            <p className={styles.userRole}>Gerente comercial</p>
           </div>
         </div>
       </div>

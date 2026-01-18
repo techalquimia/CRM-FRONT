@@ -5,6 +5,7 @@ import IconButton from "../components/ui/IconButton.jsx";
 import BackIcon from "../components/icons/BackIcon.jsx";
 import { MOCK_UNITS } from "../data/mockUnits.js";
 import { ROUTES } from "../constants/routes.js";
+import styles from "./UnitDetail.module.css";
 
 const UnitDetail = () => {
   const { id } = useParams();
@@ -14,12 +15,11 @@ const UnitDetail = () => {
   if (!unit) {
     return (
       <DashboardLayout title="Unidad no encontrada" subtitle="">
-        <div style={{ textAlign: "center", padding: "40px" }}>
+        <div className={styles.notFoundContainer}>
           <p>La unidad solicitada no existe.</p>
           <button
-            className="primary-button"
+            className={styles.primaryButton}
             onClick={() => navigate(ROUTES.DASHBOARD)}
-            style={{ marginTop: "20px" }}
           >
             Volver al Dashboard
           </button>
@@ -33,13 +33,13 @@ const UnitDetail = () => {
       title={`${unit.name} - Detalle`}
       subtitle={`Estado: ${unit.status}`}
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+      <div className={styles.container}>
         {/* Información de la unidad */}
-        <article className="card">
-          <header className="card-header">
+        <article className={styles.card}>
+          <header className={styles.cardHeader}>
             <div>
-              <p className="card-title">Información de la Unidad</p>
-              <p className="card-subtitle">Detalles de la ruta actual</p>
+              <p className={styles.cardTitle}>Información de la Unidad</p>
+              <p className={styles.cardSubtitle}>Detalles de la ruta actual</p>
             </div>
             <IconButton
               icon={<BackIcon />}
@@ -47,62 +47,35 @@ const UnitDetail = () => {
               ariaLabel="Volver al dashboard"
             />
           </header>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "20px",
-              marginTop: "20px",
-            }}
-          >
-            <div>
-              <p style={{ color: "var(--muted)", fontSize: "0.85rem", margin: "0 0 8px 0" }}>
-                Conductor
-              </p>
-              <p style={{ fontWeight: 600, margin: 0 }}>{unit.driver}</p>
+          <div className={styles.infoGrid}>
+            <div className={styles.infoItem}>
+              <p className={styles.infoLabel}>Conductor</p>
+              <p className={styles.infoValue}>{unit.driver}</p>
             </div>
-            <div>
-              <p style={{ color: "var(--muted)", fontSize: "0.85rem", margin: "0 0 8px 0" }}>
-                Destino
-              </p>
-              <p style={{ fontWeight: 600, margin: 0 }}>{unit.destination}</p>
+            <div className={styles.infoItem}>
+              <p className={styles.infoLabel}>Destino</p>
+              <p className={styles.infoValue}>{unit.destination}</p>
             </div>
-            <div>
-              <p style={{ color: "var(--muted)", fontSize: "0.85rem", margin: "0 0 8px 0" }}>
-                Llegada estimada
-              </p>
-              <p style={{ fontWeight: 600, margin: 0 }}>{unit.estimatedArrival}</p>
+            <div className={styles.infoItem}>
+              <p className={styles.infoLabel}>Llegada estimada</p>
+              <p className={styles.infoValue}>{unit.estimatedArrival}</p>
             </div>
-            <div>
-              <p style={{ color: "var(--muted)", fontSize: "0.85rem", margin: "0 0 8px 0" }}>
-                Estado
-              </p>
-              <p
-                style={{
-                  fontWeight: 600,
-                  margin: 0,
-                  color: "var(--primary)",
-                  padding: "4px 12px",
-                  background: "var(--primary-soft)",
-                  borderRadius: "999px",
-                  display: "inline-block",
-                }}
-              >
-                {unit.status}
-              </p>
+            <div className={styles.infoItem}>
+              <p className={styles.infoLabel}>Estado</p>
+              <p className={styles.statusBadge}>{unit.status}</p>
             </div>
           </div>
         </article>
 
         {/* Mapa de la unidad */}
-        <article className="card">
-          <header className="card-header">
+        <article className={styles.card}>
+          <header className={styles.cardHeader}>
             <div>
-              <p className="card-title">Ubicación en tiempo real</p>
-              <p className="card-subtitle">Posición actual de {unit.name}</p>
+              <p className={styles.cardTitle}>Ubicación en tiempo real</p>
+              <p className={styles.cardSubtitle}>Posición actual de {unit.name}</p>
             </div>
           </header>
-          <div className="map-container" style={{ height: "500px" }}>
+          <div className={styles.mapContainer}>
             <UnitMapView unit={unit} />
           </div>
         </article>

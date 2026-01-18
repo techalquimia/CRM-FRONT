@@ -3,6 +3,7 @@ import { useAuth } from "../../context/AuthContext.jsx";
 import { ROUTES } from "../../constants/routes.js";
 import IconButton from "../ui/IconButton.jsx";
 import LogoutIcon from "../icons/LogoutIcon.jsx";
+import styles from "./Topbar.module.css";
 
 const Topbar = ({ title, subtitle }) => {
   const { logout } = useAuth();
@@ -14,12 +15,12 @@ const Topbar = ({ title, subtitle }) => {
   };
 
   return (
-    <header className="topbar">
+    <header className={styles.topbar}>
       <div>
-        <h1 className="page-title">{title}</h1>
-        <p className="page-subtitle">{subtitle}</p>
+        <h1 className={styles.pageTitle}>{title}</h1>
+        <p className={styles.pageSubtitle}>{subtitle}</p>
       </div>
-      <div className="topbar-actions">
+      <div className={styles.topbarActions}>
         <IconButton
           icon={<LogoutIcon />}
           onClick={handleLogout}

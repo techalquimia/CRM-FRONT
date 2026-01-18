@@ -1,13 +1,14 @@
 import Sidebar from "../navigation/Sidebar.jsx";
 import Topbar from "../navigation/Topbar.jsx";
+import styles from "./DashboardLayout.module.css";
 
 const DashboardLayout = ({ title, subtitle, children }) => {
   return (
-    <div className="app-shell">
+    <div className={styles.appShell}>
       <Sidebar />
-      <div className="app-body">
+      <div className={styles.appBody}>
         <Topbar title={title} subtitle={subtitle} />
-        <main className="app-content">{children}</main>
+        <main className={styles.appContent}>{children}</main>
       </div>
     </div>
   );

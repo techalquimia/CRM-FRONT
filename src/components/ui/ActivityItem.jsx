@@ -1,12 +1,14 @@
+import styles from "./ActivityItem.module.css";
+
 const ActivityItem = ({ title, detail, time }) => {
   return (
-    <div className="activity-item">
-      <div className="activity-avatar" aria-hidden="true" />
-      <div className="activity-body">
-        <p className="activity-title">{title}</p>
-        <p className="activity-detail">{detail}</p>
+    <div className={styles.activityItem}>
+      <div className={styles.activityAvatar} aria-hidden="true" />
+      <div>
+        <p className={styles.activityTitle}>{title}</p>
+        <p className={styles.activityDetail}>{detail}</p>
       </div>
-      <span className="activity-time">{time}</span>
+      <span className={styles.activityTime}>{time}</span>
     </div>
   );
 };

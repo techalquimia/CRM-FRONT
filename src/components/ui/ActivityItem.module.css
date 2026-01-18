@@ -1,0 +1,28 @@
+.activityItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.activityAvatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: #f0f3ff;
+}
+
+.activityTitle {
+  font-weight: 600;
+}
+
+.activityDetail {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.activityTime {
+  color: var(--muted);
+  font-size: 0.75rem;
+}

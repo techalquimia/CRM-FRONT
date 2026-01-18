@@ -1,0 +1,24 @@
+.appShell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+.appBody {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 32px 40px;
+  gap: 24px;
+}
+
+.appContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 960px) {
+  .appShell {
+    grid-template-columns: 1fr;
+  }
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import IconButton from "../ui/IconButton.jsx";
 import LoadingSpinner from "../ui/LoadingSpinner.jsx";
+import styles from "./ImageViewer.module.css";
 
 /**
  * Image viewer component with navigation and metadata
@@ -49,42 +50,19 @@ const ImageViewer = ({ images, currentIndex, onClose, onNavigate }) => {
 
   return (
     <div
-      className="image-viewer-overlay"
+      className={styles.overlay}
       onClick={onClose}
       onKeyDown={handleKeyDown}
       tabIndex={0}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: "rgba(0, 0, 0, 0.9)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 1000,
-        cursor: "pointer",
-      }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        style={{
-          position: "relative",
-          maxWidth: "95vw",
-          maxHeight: "95vh",
-          display: "flex",
-          alignItems: "center",
-          gap: "20px",
-          background: "rgba(20, 20, 20, 0.95)",
-          borderRadius: "12px",
-          padding: "20px",
-        }}
+        className={styles.viewer}
       >
         {currentIndex > 0 && (
           <IconButton
             icon={
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ color: "white" }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M15 18L9 12L15 6"
                   stroke="currentColor"
@@ -96,43 +74,19 @@ const ImageViewer = ({ images, currentIndex, onClose, onNavigate }) => {
             }
             onClick={handlePrevious}
             ariaLabel="Imagen anterior"
-            style={{ background: "rgba(255, 255, 255, 0.1)", border: "1px solid rgba(255, 255, 255, 0.3)" }}
+            className={styles.navButton}
           />
         )}
 
-        <div style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
-          <div style={{ position: "relative", flex: 1, minHeight: "400px" }}>
+        <div className={styles.imageContainer}>
+          <div className={styles.imageWrapper}>
             {imageLoading && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "#333",
-                  borderRadius: "8px",
-                }}
-              >
+              <div className={styles.imageLoading}>
                 <LoadingSpinner size="medium" message="Cargando imagen..." />
               </div>
             )}
             {imageError ? (
-              <div
-                style={{
-                  width: "800px",
-                  height: "600px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "#333",
-                  color: "white",
-                  borderRadius: "8px",
-                }}
-              >
+              <div className={styles.imageError}>
                 Error al cargar la imagen
               </div>
             ) : (
@@ -144,72 +98,43 @@ const ImageViewer = ({ images, currentIndex, onClose, onNavigate }) => {
                   setImageLoading(false);
                   setImageError(true);
                 }}
-                style={{
-                  maxWidth: "70vw",
-                  maxHeight: "85vh",
-                  objectFit: "contain",
-                  borderRadius: "8px",
-                  cursor: "default",
-                  opacity: imageLoading ? 0 : 1,
-                  transition: "opacity 0.3s",
-                }}
+                className={`${styles.image} ${!imageLoading ? styles.loaded : ""}`}
               />
             )}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-40px",
-                left: "50%",
-                transform: "translateX(-50%)",
-                color: "white",
-                textAlign: "center",
-                fontSize: "14px",
-              }}
-            >
+            <div className={styles.counter}>
               {currentIndex + 1} / {images.length}
             </div>
           </div>
 
           {/* Panel de metadatos */}
-          <div
-            style={{
-              width: "300px",
-              background: "rgba(255, 255, 255, 0.1)",
-              borderRadius: "8px",
-              padding: "20px",
-              color: "white",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <h3 style={{ margin: "0 0 20px 0", fontSize: "1.2rem", fontWeight: 600 }}>
-              Metadatos
-            </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              <div>
-                <p style={{ margin: "0 0 4px 0", fontSize: "0.85rem", opacity: 0.8 }}>Nombre</p>
-                <p style={{ margin: 0, fontWeight: 500 }}>{currentImage.name}</p>
+          <div className={styles.metadataPanel}>
+            <h3 className={styles.metadataTitle}>Metadatos</h3>
+            <div className={styles.metadataList}>
+              <div className={styles.metadataItem}>
+                <p className={styles.metadataLabel}>Nombre</p>
+                <p className={styles.metadataValue}>{currentImage.name}</p>
               </div>
-              <div>
-                <p style={{ margin: "0 0 4px 0", fontSize: "0.85rem", opacity: 0.8 }}>Fecha y Hora</p>
-                <p style={{ margin: 0, fontWeight: 500 }}>
+              <div className={styles.metadataItem}>
+                <p className={styles.metadataLabel}>Fecha y Hora</p>
+                <p className={styles.metadataValue}>
                   {formatDateTime(currentImage.date, currentImage.time)}
                 </p>
               </div>
-              <div>
-                <p style={{ margin: "0 0 4px 0", fontSize: "0.85rem", opacity: 0.8 }}>Ubicación</p>
-                <p style={{ margin: 0, fontWeight: 500 }}>{currentImage.location.address}</p>
-                <p style={{ margin: "4px 0 0 0", fontSize: "0.75rem", opacity: 0.7 }}>
+              <div className={styles.metadataItem}>
+                <p className={styles.metadataLabel}>Ubicación</p>
+                <p className={styles.metadataValue}>{currentImage.location.address}</p>
+                <p className={styles.metadataSubValue}>
                   {currentImage.location.lat.toFixed(6)}, {currentImage.location.lng.toFixed(6)}
                 </p>
               </div>
-              <div>
-                <p style={{ margin: "0 0 4px 0", fontSize: "0.85rem", opacity: 0.8 }}>Unidad</p>
-                <p style={{ margin: 0, fontWeight: 500 }}>{currentImage.unit}</p>
+              <div className={styles.metadataItem}>
+                <p className={styles.metadataLabel}>Unidad</p>
+                <p className={styles.metadataValue}>{currentImage.unit}</p>
               </div>
               {currentImage.description && (
-                <div>
-                  <p style={{ margin: "0 0 4px 0", fontSize: "0.85rem", opacity: 0.8 }}>Descripción</p>
-                  <p style={{ margin: 0, fontWeight: 500, fontSize: "0.9rem" }}>
+                <div className={styles.metadataItem}>
+                  <p className={styles.metadataLabel}>Descripción</p>
+                  <p className={styles.metadataValue} style={{ fontSize: "0.9rem" }}>
                     {currentImage.description}
                   </p>
                 </div>
@@ -221,7 +146,7 @@ const ImageViewer = ({ images, currentIndex, onClose, onNavigate }) => {
         {currentIndex < images.length - 1 && (
           <IconButton
             icon={
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ color: "white" }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M9 18L15 12L9 6"
                   stroke="currentColor"
@@ -233,13 +158,13 @@ const ImageViewer = ({ images, currentIndex, onClose, onNavigate }) => {
             }
             onClick={handleNext}
             ariaLabel="Siguiente imagen"
-            style={{ background: "rgba(255, 255, 255, 0.1)", border: "1px solid rgba(255, 255, 255, 0.3)" }}
+            className={styles.navButton}
           />
         )}
 
         <IconButton
           icon={
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ color: "white" }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 d="M18 6L6 18M6 6L18 18"
                 stroke="currentColor"
@@ -251,13 +176,7 @@ const ImageViewer = ({ images, currentIndex, onClose, onNavigate }) => {
           }
           onClick={onClose}
           ariaLabel="Cerrar visor"
-          style={{
-            position: "absolute",
-            top: "-50px",
-            right: 0,
-            background: "rgba(255, 255, 255, 0.1)",
-            border: "1px solid rgba(255, 255, 255, 0.3)",
-          }}
+          className={`${styles.navButton} ${styles.closeButton}`}
         />
       </div>
     </div>
@@ -287,4 +206,3 @@ ImageViewer.propTypes = {
 };
 
 export default ImageViewer;
-

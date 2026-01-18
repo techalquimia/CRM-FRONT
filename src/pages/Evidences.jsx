@@ -3,6 +3,7 @@ import DashboardLayout from "../components/layout/DashboardLayout.jsx";
 import EvidenceCard from "../components/evidences/EvidenceCard.jsx";
 import ImageViewer from "../components/evidences/ImageViewer.jsx";
 import { MOCK_EVIDENCES } from "../data/mockEvidences.js";
+import styles from "./Evidences.module.css";
 
 const Evidences = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
@@ -26,13 +27,7 @@ const Evidences = () => {
         title="Evidencias"
         subtitle={`${MOCK_EVIDENCES.length} evidencias registradas`}
       >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-            gap: "24px",
-          }}
-        >
+        <div className={styles.evidencesGrid}>
           {MOCK_EVIDENCES.map((evidence) => (
             <EvidenceCard
               key={evidence.id}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { ROUTES } from "../constants/routes.js";
+import styles from "./Login.module.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -29,24 +30,24 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <header className="login-header">
+    <div className={styles.loginPage}>
+      <div className={styles.loginCard}>
+        <header className={styles.loginHeader}>
           <div>
-            <p className="login-eyebrow">CRM seguro</p>
-            <h1 className="login-title">Inicia sesión</h1>
-            <p className="login-subtitle">
+            <p className={styles.loginEyebrow}>CRM seguro</p>
+            <h1 className={styles.loginTitle}>Inicia sesión</h1>
+            <p className={styles.loginSubtitle}>
               Accede a tu panel y gestiona tus leads.
             </p>
           </div>
         </header>
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className={styles.loginForm} onSubmit={handleSubmit}>
           {error && (
-            <div className="error-message" style={{ color: "red", marginBottom: "1rem" }}>
+            <div className={styles.errorMessage}>
               {error}
             </div>
           )}
-          <label className="input-group">
+          <label className={styles.inputGroup}>
             <span>Correo</span>
             <input
               type="email"
@@ -56,7 +57,7 @@ const Login = () => {
               required
             />
           </label>
-          <label className="input-group">
+          <label className={styles.inputGroup}>
             <span>Contraseña</span>
             <input
               type="password"
@@ -66,8 +67,8 @@ const Login = () => {
               required
             />
           </label>
-          <div className="login-footer">
-            <label className="checkbox">
+          <div className={styles.loginFooter}>
+            <label className={styles.checkbox}>
               <input
                 type="checkbox"
                 checked={rememberMe}
@@ -76,30 +77,13 @@ const Login = () => {
               <span>Recordarme</span>
             </label>
             <button
-              className="primary-button"
+              className={styles.primaryButton}
               type="submit"
               disabled={isLoading}
-              style={{
-                position: "relative",
-                minWidth: "120px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "8px",
-              }}
             >
               {isLoading ? (
                 <>
-                  <div
-                    style={{
-                      width: "16px",
-                      height: "16px",
-                      border: "2px solid rgba(255, 255, 255, 0.3)",
-                      borderTop: "2px solid white",
-                      borderRadius: "50%",
-                      animation: "spin 0.8s linear infinite",
-                    }}
-                  />
+                  <div className={styles.loadingSpinner} />
                   <span>Iniciando...</span>
                 </>
               ) : (
