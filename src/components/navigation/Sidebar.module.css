@@ -15,13 +15,6 @@
   font-size: 1.1rem;
 }
 
-.brandDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--primary);
-}
-
 .sidebarNav {
   display: flex;
   flex-direction: column;

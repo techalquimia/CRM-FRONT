@@ -1,0 +1,96 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoIcon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconSvg {
+  width: 100%;
+  height: 100%;
+  color: #f4a261;
+  /* Color dorado/naranja claro similar al logo */
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brandName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.tagline {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.2;
+  text-transform: lowercase;
+}
+
+/* Variantes */
+.compact .logoIcon {
+  width: 36px;
+  height: 36px;
+}
+
+.compact .brandName {
+  font-size: 1.2rem;
+}
+
+.compact .tagline {
+  font-size: 0.7rem;
+}
+
+.minimal {
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.minimal .logoIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.minimal .brandName {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.minimal .tagline {
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+/* Para sidebar */
+.sidebar .logo {
+  gap: 10px;
+}
+
+.sidebar .logoIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.sidebar .brandName {
+  font-size: 1.1rem;
+}
+
+.sidebar .tagline {
+  font-size: 0.65rem;
+}

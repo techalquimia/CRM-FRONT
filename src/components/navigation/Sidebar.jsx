@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { ROUTES, ROUTE_NAMES } from "../../constants/routes.js";
+import Logo from "../ui/Logo.jsx";
 import styles from "./Sidebar.module.css";
 
 const items = [
@@ -21,8 +22,7 @@ const Sidebar = () => {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarBrand}>
-        <span className={styles.brandDot} aria-hidden="true" />
-        <span>CRM</span>
+        <Logo variant="compact" showTagline={false} />
       </div>
       <nav className={styles.sidebarNav}>
         {items.map((item, index) => (

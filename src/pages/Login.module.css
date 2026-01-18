@@ -18,9 +18,10 @@
 
 .loginHeader {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
 }
 
 .loginEyebrow {

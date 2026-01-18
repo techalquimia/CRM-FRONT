@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { ROUTES } from "../constants/routes.js";
+import Logo from "../components/ui/Logo.jsx";
 import styles from "./Login.module.css";
 
 const Login = () => {
@@ -33,6 +34,7 @@ const Login = () => {
     <div className={styles.loginPage}>
       <div className={styles.loginCard}>
         <header className={styles.loginHeader}>
+          <Logo variant="minimal" showTagline={true} />
           <div>
             <p className={styles.loginEyebrow}>CRM seguro</p>
             <h1 className={styles.loginTitle}>Inicia sesión</h1>
