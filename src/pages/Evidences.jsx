@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardLayout from "../components/layout/DashboardLayout.jsx";
 import EvidenceCard from "../components/evidences/EvidenceCard.jsx";
+import EvidenceCardSkeleton from "../components/ui/EvidenceCardSkeleton.jsx";
 import ImageViewer from "../components/evidences/ImageViewer.jsx";
 import EvidenceErrorBoundary from "../components/errors/EvidenceErrorBoundary.jsx";
 import PageErrorBoundary from "../components/errors/PageErrorBoundary.jsx";
@@ -9,9 +10,24 @@ import styles from "./Evidences.module.css";
 
 const Evidences = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [evidences, setEvidences] = useState([]);
+
+  useEffect(() => {
+    // Simular carga de evidencias
+    const loadEvidences = async () => {
+      setIsLoading(true);
+      // Simular delay de API
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setEvidences(MOCK_EVIDENCES);
+      setIsLoading(false);
+    };
+
+    loadEvidences();
+  }, []);
 
   const handleImageClick = (evidence) => {
-    const index = MOCK_EVIDENCES.findIndex((e) => e.id === evidence.id);
+    const index = evidences.findIndex((e) => e.id === evidence.id);
     setSelectedImageIndex(index);
   };
 
@@ -28,22 +44,30 @@ const Evidences = () => {
       <EvidenceErrorBoundary>
         <DashboardLayout
           title="Evidencias"
-          subtitle={`${MOCK_EVIDENCES.length} evidencias registradas`}
+          subtitle={isLoading ? "Cargando..." : `${evidences.length} evidencias registradas`}
         >
-          <div className={styles.evidencesGrid}>
-            {MOCK_EVIDENCES.map((evidence) => (
-              <EvidenceCard
-                key={evidence.id}
-                evidence={evidence}
-                onImageClick={handleImageClick}
-              />
-            ))}
-          </div>
+          {isLoading ? (
+            <div className={styles.evidencesGrid}>
+              {Array.from({ length: 6 }).map((_, i) => (
+                <EvidenceCardSkeleton key={i} />
+              ))}
+            </div>
+          ) : (
+            <div className={styles.evidencesGrid}>
+              {evidences.map((evidence) => (
+                <EvidenceCard
+                  key={evidence.id}
+                  evidence={evidence}
+                  onImageClick={handleImageClick}
+                />
+              ))}
+            </div>
+          )}
         </DashboardLayout>
 
-        {selectedImageIndex !== null && (
+        {selectedImageIndex !== null && evidences.length > 0 && (
           <ImageViewer
-            images={MOCK_EVIDENCES}
+            images={evidences}
             currentIndex={selectedImageIndex}
             onClose={handleCloseViewer}
             onNavigate={handleNavigate}

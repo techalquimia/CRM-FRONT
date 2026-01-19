@@ -85,14 +85,33 @@
   - ✅ Estilos con scope local para evitar conflictos
   - ✅ Mejor rendimiento y mantenibilidad
 
-### 6. Falta de Estados de Carga (Loading States)
+### 6. Falta de Estados de Carga (Loading States) ✅
 **Ubicación:** Múltiples componentes
 - **Problema:** No hay indicadores de carga
 - **Impacto:** Mala UX cuando hay operaciones asíncronas
-- **Componentes afectados:**
-  - Login (no muestra loading al autenticar)
-  - Mapas (no muestra loading al cargar)
-  - Evidencias (no muestra loading al cargar imágenes)
+- **Solución:** ✅ Implementado sistema completo de estados de carga
+- **Estado:** RESUELTO
+- **Implementación:**
+  - ✅ Componentes de loading creados:
+    - `LoadingSpinner` - Spinner reutilizable con tamaños
+    - `LoadingOverlay` - Overlay para carga de contenido
+    - `LoadingSkeleton` - Skeleton loaders para mejor UX
+    - `StatCardSkeleton` - Skeleton para tarjetas de estadísticas
+    - `EvidenceCardSkeleton` - Skeleton para tarjetas de evidencias
+  - ✅ Estados de carga implementados en:
+    - `Login.jsx` - Spinner en botón durante autenticación ✅
+    - `Dashboard.jsx` - Skeleton loaders y overlay durante carga inicial ✅
+    - `Evidences.jsx` - Skeleton loaders durante carga de evidencias ✅
+    - `UnitDetail.jsx` - Skeleton loaders durante carga de unidad ✅
+    - `GoogleMapView.jsx` - Overlay mientras carga el mapa ✅
+    - `UnitMapView.jsx` - Overlay mientras carga el mapa ✅
+    - `EvidenceCard.jsx` - Spinner mientras carga imágenes ✅
+    - `ImageViewer.jsx` - Spinner mientras carga imagen en visor ✅
+  - ✅ Mejoras de UX:
+    - Skeleton loaders muestran estructura del contenido mientras carga
+    - Loading states con mensajes descriptivos
+    - Transiciones suaves entre estados
+    - Feedback visual inmediato para todas las operaciones asíncronas
 
 ### 7. Validación de Datos Insuficiente
 **Ubicación:** `src/pages/Login.jsx`, `src/pages/UnitDetail.jsx`

@@ -1,0 +1,22 @@
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
